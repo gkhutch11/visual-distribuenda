@@ -1,0 +1,210 @@
+<html>
+<head>
+<title>Visual Distribuenda</title>
+
+<!-- Load style sheets, but make sure to load the main one last 
+     (so it overrides stuff in the others if there are conflicts)
+-->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/flat-ui.css" rel="stylesheet">
+<link rel="stylesheet" href="distribuenda.css">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1; charset=utf-8">
+<meta http-equiv="Expires" content="0">
+
+<script src="d3.v3.min.js" charset="utf-8"></script>
+<script src="distribuenda.js"></script>
+</head>
+
+<body>
+<div align="center"> 
+
+
+  <!-- light yellow line at the top -->
+  <table style="height:6px; width:100%; background-color: #ffffe0;">
+      <tr align=center>
+      <td>
+      </td>
+    </tr>
+  </table>
+
+
+  <!-- the rest of the page -->
+  <br> <!-- skip down a bit -->
+  <br>
+  <br>
+  <table border=0 cellspacing=1 cellpadding=2 width=750>
+    <tr> 
+      <td width="742"> 
+
+  <h1 id="heading">Visual Distribuenda</h1>
+  <br>
+</div>
+
+<div id="everything" style="visibility:">
+
+  <p><font id="benchmarkDescription" color="grey">Benchmark the distribution of some morally relevant good using a number of different conceptions of justice.</font></p>
+  <br>
+  <br>
+  <br>
+
+<p>
+<table>
+  <tr>
+    <td colspan=3>
+      <div id="chartParagraph">
+        <svg class="chart" id="chart1"></svg>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td width=28>
+    </td>
+    <td>
+      <div align="left"><a id="sorted" class="clipboard" onclick="toggleSorted()">Sort it!</a>&nbsp;&nbsp;<br></div>
+    </td>
+    <td>
+      <div align="right"><a id="exportCSVlink" class="clipboard" onclick="exportToCSV()">Save as CSV</a>&nbsp;&nbsp;<br></div>
+    </td>
+  </tr>
+</table>
+</p>
+
+
+<div id="option">
+<p>
+  <table width="100%">
+  <tr>
+  <td>
+    <table>
+<!--    <tr><td colspan="3">
+        <!--       <input type="checkbox" value="" id="checkbox1" onchange="showSortedDistribution();">Sort it!</input> -->
+    
+    <tr>
+    <td>
+      Population size:&nbsp;&nbsp;
+    </td>
+    <td>
+        <input
+           name="totalAgents"
+           id="totalAgents"
+           type="range"
+           min=2
+           max=200
+           value="200"
+           onchange="createDistribution()" />
+    </td>
+    <td>
+      &nbsp;
+      <input class="btn"
+           name="updateButton" 
+           type="button" 
+           value="new distribution"
+           onclick="createDistribution()" /><br>
+    </td>
+    </tr>
+    
+    <tr>
+    <td>
+      Distribuendum:
+    </td>
+    <td>
+      <select style="width:160" id="distribuendum" onchange="distribuendumChanged()">
+          <option>Money</option>
+          <option>Health</option>
+          <option>Social capital</option>
+          <option>Friends and family</option>
+          <option>Happiness</option>
+          <option>Wellbeing</option>
+          <option>Eudaimonia</option>
+      </select>
+
+      <br>
+    </td>
+    <td>&nbsp</td>
+    </tr>
+
+    <tr>
+    <td>
+      Benchmark:
+    </td>
+    <td>
+          <select style="width:160" id="benchmark" onchange="benchmarkChanged()">
+            <option value="0">None</option>
+            <option value="1">Efficiency</option>
+            <option value="2">Adequacy</option>
+            <option value="3">Equality</option>
+          </select>
+
+    </td>
+    <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+    <td>&nbsp;</td>
+    <td><div style="visibility:hidden" id="benchmarkOptionsContainer">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" placeholder="0 < threshold < 100" id="benchmarkValue" style="width:140px; height:30px" onchange="adequacyThresholdChanged()"/>
+        </div></td>
+    </td>&nbsp;</td>
+    </tr>
+
+    </table>
+  </td>
+  <!-- clipboard <td valign="top" align="right"><textarea id="clipboardTextArea" style="width: 80px; height: 100px; display:none;"></textarea></td> -->
+  </tr>
+  </table>
+
+</p>
+</div>
+
+<!-- why do i jump around when the adequacy threshold changes from validated to invalidated or vice versa? -->
+<p align="right" style="font-size:10pt">Braynen Lab, 2013.<br>
+Google Chrome for now.</p><br>
+<p>
+
+</div>
+
+
+
+
+
+</body>
+
+<script>
+                               
+///////////////////////////////////////////////////////////////////////////////////
+//
+// Main program: this is our "main" -- all functions in distribuenda.js get called from here
+//
+if (isSupportedBrowser()) {
+
+  // the chart
+  var g_chart = d3.select("#chart1");
+
+  // size of each bar on the chart
+  var w = 620 / g_distribution.length, // 620 pixels is the width of chart
+      h = g_maxHeight;
+
+  //
+  // how we will size the chart
+  // 
+  var xScale = d3.scale.linear()
+   .domain([0, 1])
+   .range([0, w]);
+
+  var yScale = d3.scale.linear()
+   .domain([0, g_maxHeight])
+   .rangeRound([0, h]);
+
+  init();
+  createDistribution();
+
+  // Add the onclick callback to the button
+  d3.select("#sort").on("click", sortBars);
+}
+
+</script>
+
+</body>
+</html>

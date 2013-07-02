@@ -1,0 +1,58 @@
+/*
+ * This .btn (button) class has been licensed from http://designmodo.com
+ * under Creative Commons Attribution 3.0 Unported 
+ * (http://creativecommons.org/licenses/by/3.0/) and 
+ * MIT License (http://opensource.org/licenses/mit-license.html)
+ */
+
+.btn {
+  border: none;
+  background: #bdc3c7;
+  color: #ffffff;
+  padding: 9px 12px 10px;
+  line-height: 22px;
+  text-decoration: none;
+  text-shadow: none;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden;
+}
+.btn:hover,
+.btn:focus,
+.btn-group:focus .btn.dropdown-toggle {
+  background-color: #cacfd2;
+  color: #ffffff;
+  outline: none;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden;
+}
+.btn:active,
+.btn-group.open .btn.dropdown-toggle,
+.btn.active {
+  background-color: #a1a6a9;
+  color: rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.btn.disabled,
+.btn[disabled] {
+  background-color: #bdc3c7;
+  color: rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}

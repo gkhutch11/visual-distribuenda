@@ -1,0 +1,151 @@
+body
+{
+    font-size: 11pt;
+    line-height: 12pt;
+    font-family: Arial, Verdana, 'Bookman Old Style', Georgia, Times, serif;
+    margin-top: 0pt;
+    margin-left: 0pt;
+    color: black;
+    margin-right: 0pt;
+    background-color: white;
+    text-align: justify
+}
+
+
+a
+{
+    cursor: pointer;
+}
+/*a, a:link {*/
+
+
+a.clipboard
+{
+    background-color: #eee; /*#407EC9*/
+    border-radius:0px;
+    padding:0px 0px 0px 0px;
+    color: #666;
+    font-weight: none;
+    font-size: 11px;
+    text-decoration: none;
+    opacity:.7;
+}
+
+a:hover
+{
+    /*color: #880015; /*midnightblue;*/
+    color: #222222;
+    text-decoration: none;
+}
+
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.chart rect {
+/*    fill: steelblue; */
+    stroke: white;
+    text-align: right;
+    padding: 0px;
+    margin: 0px;
+    shape-rendering:crispEdges;
+}
+
+.chart
+{
+    font: 10px sans-serif;
+    color: white;
+    padding: 0px;
+    margin: 0px;
+ }
+
+p
+{
+    font-size: 11pt;
+    margin-bottom: 2pt;
+    margin-left: 20pt;
+    line-height: 15pt;
+    margin-right: 5pt;
+    font-family: Arial, Verdana, 'Bookman Old Style', Georgia, Times, serif
+}
+
+td
+{
+    font-size: 11pt;
+    margin-bottom: 2pt;
+    margin-left: 20pt;
+    line-height: 15pt;
+    margin-right: 5pt;
+    font-family: Arial, Verdana, 'Bookman Old Style', Georgia, Times, serif;
+    color: #555555;
+}
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+
+ul
+{
+    font-size: 11pt;
+    margin-bottom: 2pt;
+    margin-left: 20pt;
+    line-height: 15pt;
+    margin-right: 5pt;
+    font-family: Arial, Verdana, 'Bookman Old Style', Georgia, Times, serif
+}
+ol
+{
+    font-size: 11pt;
+    margin-bottom: 2pt;
+    margin-left: 20pt;
+    line-height: 15pt;
+    margin-right: 5pt;
+    font-family: Arial, Verdana, 'Bookman Old Style', Georgia, Times, serif
+}
+
+img {
+    border: 0pt;
+}
+
+
+h3 
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+    color: #4D4D4D;
+    margin-left: 19pt;
+    background-color: white;
+}
+h2
+{
+    font-size: 12pt;
+    margin: 0pt;
+    color: black;
+    padding-top: 0pt;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: #fef2c3;
+}
+h1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16pt;
+    font-weight: normal;
+    line-height: 27px;
+    color: #b2b2b2;
+    background-color: white;
+}
+
