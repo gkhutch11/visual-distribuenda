@@ -22,7 +22,8 @@
  var populationSize = 12;
  var agent = 1;
  var v = 0; //Math.random() * g_maxHeight;
- var g_distribution = d3.range(populationSize).map(next); // starting dataset
+ var g_baseDistribution = [];
+ var g_distribution = []; //d3.range(populationSize).map(next); // starting dataset
 
 
  // Returns the version of Internet Explorer or a -1
@@ -232,23 +233,9 @@ function resetSorted()
 
    resetSorted();
 
-   textArea = document.getElementById("clipboardTextArea");
-   label = document.getElementById("clipboardLabel");
    g_distribution = []; // nuke the array
    populationSize = parseInt( document.getElementById("totalAgents").value );
    g_distribution = d3.range(populationSize).map(next); // starting dataset
-//   g_distribution.sort( compareValues ); // blah
-
-
-   /*
-   // test array for the gini coefficient
-   for (var i = 0;  i < 14;  i++)
-   {
-     g_distribution[i].value = 0;
-   }
-   g_distribution[14].value = 100;
-   populationSize = 15;
-   */
 
    // distribution has been created;
    // now benchmark it and draw it
