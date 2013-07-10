@@ -481,102 +481,91 @@ function createBaseDistribution()
 
     var benchmarkDescription = "Benchmark the distribution of some morally relevant good using a number of different conceptions of justice."; // default message
 
-    switch (whichDistribuendumIsSelected "|" whichBenchmarkToUse)
+    switch (whichDistribuendumIsSelected | whichBenchmarkToUse)
       {
-        case ("0 | 0"):  // means money and no benchmark 
-          benchmarkDescription = "Studying distributions of wealth was the predominant measure of the health of a society throughout the 20th century. Economists generally focus of 
-                                  these distributions to measure a country's Gross Domestic Product (GDP)"
+        case (0 | 0):  // means money and no benchmark 
+          benchmarkDescription = "Studying distributions of wealth was the predominant measure of the health of a society throughout the 20th century. Economists generally focus of these distributions to measure a country's Gross Domestic Product (GDP)."
           break;
-        case ("1 | 0"):  // means health and no benchmark
-          benchmarkDescription = "Factors that determine the physical health of a society include things like life expectancy, obesity percentage, and infant mortality rate."
+        case (1 | 0):  // means health and no benchmark
+          benchmarkDescription = "Factors that determine the physical health of a society include things like life expectancy, obesity percentage, and infant mortality rate.                                                                                 "
           break;
-        case ("2 | 0"):  // means social capital and no benchmark
-          benchmarkDescription = "Social Capital is a way to quantify the value of your phone's contacts list. Social media sites like LinkedIn are centered around rising this number."
+        case (2 | 0):  // means social capital and no benchmark
+          benchmarkDescription = "Social Capital is a way to quantify the value of your phone's contacts list. Social media sites like LinkedIn are centered around rising this number.                                                                     "
           break;
-        case ("3 | 0"):  // means friends and family and no benchmark
-          benchmarkDescription = "Material wealth alone is not enough to satisfy our deepest needs. Having a strong base of friends and family is important as well."
+        case (3 | 0):  // means friends and family and no benchmark
+          benchmarkDescription = "Material wealth alone is not enough to satisfy our deepest needs. Having a strong base of friends and family is important as well. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "
           break;
-        case ("4 | 0"):  // means happiness and no benchmark
-          benchmarkDescription = "Happiness distributions help us evaluate the emotional health of a society. However, this data can be misleading because it is often based on 
-                                  self-reported levels of happiness."
+        case (4 | 0):  // means happiness and no benchmark
+          benchmarkDescription = "Happiness distributions help us evaluate the emotional health of a society. However, this data can be misleading because it is often based on self-reported levels of happiness.                                          "
           break;
-        case ("5 | 0"):  // means wellbeing and no benchmark
-          benchmarkDescription = "Measurements of wellbeing include factors such as health and happiness. They are used to supplement traditional measures that only incorporate economic factors."
+        case (5 | 0):  // means wellbeing and no benchmark
+          benchmarkDescription = "Measurements of wellbeing include factors such as health and happiness. They are used to supplement traditional measures that only incorporate economic factors.                                                          "
           break;
-        case ("6 | 0"):  // means eudaimonia and no benchmark
-          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing."
+        case (6 | 0):  // means eudaimonia and no benchmark
+          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing.                                                                      "
           break;
-        case ("0 | 1"):  // means money and overall efficiency
+        case (0 | 1):  // means money and overall efficiency
           benchmarkDescription = "The greater the overall effieciency, the better. This utilitarian benchmark focuses on the total wealth of all individuals rather than on the 'shape' of the distribution."
           break; 
-        case ("1 | 1"):  // means health and overall efficiency
+        case (1 | 1):  // means health and overall efficiency
           benchmarkDescription = "The greater the overall effieciency, the better. This utilitarian benchmark focuses on the total health of all individuals rather than on the 'shape' of the distribution."
           break; 
-        case ("2 | 1"):  // means social capital and overall efficiency
-          benchmarkDescription = "Research has shown that people accomplish more collectively than they would on their own. It should follow that social distributions with strong social 
-                                  network ties should be capable of more than one consisting of loners."
+        case (2 | 1):  // means social capital and overall efficiency
+          benchmarkDescription = "Research has shown that people accomplish more collectively than they would on their own. It should follow that social distributions with strong social network ties should be capable of more than one consisting of loners."
           break; 
-        case ("3 | 1"):  // means friends and family and overall efficiency
+        case (3 | 1):  // means friends and family and overall efficiency
           benchmarkDescription = "Material wealth alone is not enough to satisfy our deepest needs as human beings. Having a strong base of friends and family is an important component of a well-rounded person."
           break; 
-        case ("4 | 1"):  // means happiness and overall efficiency
-          benchmarkDescription = "The total level happiness is starting to become a guiding factor in public policy in countries such as Bhutan, whose king famously decided to prioritize 
-                                  “Gross National Happiness” over the more typical “Gross National Product.”"
+        case (4 | 1):  // means happiness and overall efficiency
+          benchmarkDescription = "The total level happiness is starting to become a guiding factor in public policy in countries such as Bhutan, whose king famously decided to prioritize “Gross National Happiness” over the more typical “Gross National Product.”"
           break; 
-        case ("5 | 1"):  // means wellbeing and overall efficiency
+        case (5 | 1):  // means wellbeing and overall efficiency
           benchmarkDescription = "The greater the overall effieciency, the better. This utilitarian benchmark focuses on the total wellbeing of all individuals rather than on the 'shape' of the distribution."
           break; 
-        case ("6 | 1"):  // means eudaimonia and overall efficiency
-          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen as the ultimate measure of human flourishing, and this benchmark
-                                  focuses on the total amount of eudaimonia across the distribution."
+        case (6 | 1):  // means eudaimonia and overall efficiency
+          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen as the ultimate measure of human flourishing, and this benchmark focuses on the total amount of eudaimonia across the distribution."
           break;
-        case ("0 | 2"):  // means money and adequacy
+        case (0 | 2):  // means money and adequacy
           benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of money, the poverty line is an example of an adequacy treshold."
           break; 
-        case ("1 | 2"):  // means health and adequacy
+        case (1 | 2):  // means health and adequacy
           benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of health, inadequacies can have especially severe consequences."
           break; 
-        case ("2 | 2"):  // means social capital and adequacy
-          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of social capital, the adequacy threshold can vary based on 
-                                  how interconnected a society is."
+        case (2 | 2):  // means social capital and adequacy
+          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of social capital, the adequacy threshold can vary based on how interconnected a society is."
           break; 
-        case ("3 | 2"):  // means friends and family and adequacy
-          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of friends and family, the adequacy threshold is defined 
-                                  by someone who has an immediate support system that they can trust."
+        case (3 | 2):  // means friends and family and adequacy
+          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of friends and family, the adequacy threshold is defined by someone who has an immediate support system that they can trust."
           break; 
-        case ("4 | 2"):  // means happiness and adequacy
-          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. For our purposes, someone who is deemed clinically depressed has an 
-                                  inadequate amount of happiness."
-        case ("5 | 2"):  // means wellbeing and adequacy
-          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of wellbeing, reaching this threshold means having an 
-                                  adequate amount of health, wealth, and overall satisfaction with life."
+        case (4 | 2):  // means happiness and adequacy
+          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. For our purposes, someone who is deemed clinically depressed has an inadequate amount of happiness."
+          break;
+        case (5 | 2):  // means wellbeing and adequacy
+          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of wellbeing, reaching this threshold means having an adequate amount of health, wealth, and overall satisfaction with life."
           break; 
-        case ("6 | 2"):  // means eudaimonia and adequacy
-          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. If someone feels as through they are not
-                                  flourishing in their current role then they may have inadequate eudaimonia."
+        case (6 | 2):  // means eudaimonia and adequacy
+          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. If someone feels as through they are notflourishing in their current role then they may have inadequate eudaimonia."
           break; 
-        case ("0 | 3"):  // means money and equality
+        case (0 | 3):  // means money and equality
           benchmarkDescription = "More money is great, but not if it creates large divides in the population. This benchmark uses the Gini coefficient to measure the amount of inequality in the distribution."
           break; 
-        case ("1 | 3"):  // means health and equality
-          benchmarkDescription = "Inequalities in health distributions can be the result of personal choice, or it can indicate flaws in the heatlh care system as a whole."
+        case (1 | 3):  // means health and equality
+          benchmarkDescription = "Inequalities in health distributions can be the result of personal choice, or it can indicate flaws in the heatlh care system as a whole. &nbsp;&nbsp;&nbsp;&nbsp;"
           break; 
-        case ("2 | 3"):  // means social capital and equality
-          benchmarkDescription = "An unequal distribution of social capital can lead to unequal access educational and professional opportunities."
+        case (2 | 3):  // means social capital and equality
+          benchmarkDescription = "An unequal distribution of social capital can lead to unequal access educational and professional opportunities.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
           break; 
-        case ("3 | 3"):  // means friends and family and equality
-          benchmarkDescription = "An unequal distribution of friends and family can represent differening levels of autonomy across a society. As a reference point, the average Facebook user has 
-                                  141.5 friends, as of June 2013."
+        case (3 | 3):  // means friends and family and equality
+          benchmarkDescription = "An unequal distribution of friends and family can represent differening levels of autonomy across a society. As a reference point, the average Facebook user has 141.5 friends, as of June 2013."
           break; 
-        case ("4 | 3"):  // means happiness and equality
-          benchmarkDescription = "Happiness distributions are generally based on self-reported levels of happiness. Therefore, inequality can either indicate actual differences in satisfaction,
-                                  or merely a difference in the definintion of happiness. "
+        case (4 | 3):  // means happiness and equality
+          benchmarkDescription = "Happiness distributions are generally based on self-reported levels of happiness. Therefore, inequality can either indicate actual differences in satisfaction, or merely a difference in the definintion of happiness. "
           break 
-        case ("5 | 3"):  // means wellbeing and equality
+        case (5 | 3):  // means wellbeing and equality
           benchmarkDescription = "This benchmark focuses on how evenly wellbeing is distributed across society. We use the Gini coefficient to quanitify how well-off individual agents are."
           break; 
-        case ("6 | 3"):  // means eudaimonia and equality
-          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing."
+        case (6 | 3):  // means eudaimonia and equality
+          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing. &nbsp;&nbsp;&nbsp;"
           break; 
       }
 
