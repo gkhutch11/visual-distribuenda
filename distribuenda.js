@@ -19,10 +19,11 @@
  var g_isSorted = false; // show chart sorted
 
  var g_maxHeight = 200;
- var populationSize = 12;
+ var g_populationSize = 12;
  var agent = 1;
  var v = 0; //Math.random() * g_maxHeight;
- var g_distribution = d3.range(populationSize).map(next); // starting dataset
+ var g_baseDistribution = [];
+ var g_distribution = []; //d3.range(g_populationSize).map(nextBase); // starting dataset
 
 
  // Returns the version of Internet Explorer or a -1
@@ -81,9 +82,9 @@
  {
     // default the adequacy threshold to 20% of max possible amount of good
     g_adequacyThreshold = g_maxHeight * .20;
-
     setHeading( getSelectedText("distribuendum"));
 
+    createBaseDistribution();
  }
 
  function toggleSorted()
@@ -173,10 +174,15 @@
     // Get the distribution as text in CSV format
     //
     var csvContent = "";
-    for (var i = 0;  i < g_distribution.length;  i++)
+    for (var i = 0;  i < g_baseDistribution.length;  i++)
     {          
-      csvContent += /* g_distribution[i].agent + ", " + */ g_distribution[i].value + ', \n';
+      csvContent += g_baseDistribution[i].value + ', \n';
     }
+     
+//    for (var i = 0;  i < g_distribution.length;  i++)
+//    {          
+//      csvContent += /* g_distribution[i].agent + ", " + */ g_distribution[i].value + ', \n';
+//    }
 
     //window.open('data:text/csv;charset=utf-8,' + escape(text)); 
     var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent);
@@ -190,13 +196,21 @@
 
 
 
- // random walk, which starts at the initial value v above
  function next() 
  {
     return {
        agent: ++agent,
-//       value: v = (populationSize < 30 ? (Math.random() * g_maxHeight) : ~~Math.max(10, Math.min(g_maxHeight, v + 20 * (Math.random() - .5))))
-       value: v = (populationSize < 30 ? (Math.random() * g_maxHeight) : ~~Math.max(0, Math.min(g_maxHeight, v + 20 * (Math.random() - .5))))
+       value: g_baseDistribution[agent].value
+    };
+ }
+
+// random walk, which starts at the initial value v above
+ function nextBase()
+ {
+    return {
+       agent: ++agent,
+       value: v = ~~Math.max(0, Math.min(g_maxHeight, v + 20 * (Math.random() - .5)))
+       //value: v = (g_populationSize < 30 ? (Math.random() * g_maxHeight) : ~~Math.max(0, Math.min(g_maxHeight, v + 20 * (Math.random() - .5))))
     };
  }
 
@@ -221,35 +235,65 @@ function resetSorted()
   }
 }
 
+// returns a cloned version of d1
+function cloneDistribution( d1 )
+{
+   // shallow copy
+   var d2 = Object.create( d1 );
+
+   // deep copy
+   for (var i = 0;  i < d1.length;  i++)
+   {
+     d2[i].agent = d1[i].agent;
+     d2[i].value = d1[i].value;
+   }
+
+   return d2;
+}
+
+function createBaseDistribution()
+{
+    var maxPopulationSize = 200;
+    g_baseDistribution = [];
+
+    agent = 0;
+    v = Math.random() * g_maxHeight;
+    g_baseDistribution = d3.range(maxPopulationSize).map(nextBase); // starting dataset
+}
+
+
  //
  // Creates and graphs a new distribution.
  // sets g_distribution and g_chart;
  //
- function createDistribution() 
+ function createDistribution()
  {
    // init relevant variables
-   agent = 0;
-
    resetSorted();
+   //g_distribution = []; // nuke the array
 
-   textArea = document.getElementById("clipboardTextArea");
-   label = document.getElementById("clipboardLabel");
-   g_distribution = []; // nuke the array
-   populationSize = parseInt( document.getElementById("totalAgents").value );
-   g_distribution = d3.range(populationSize).map(next); // starting dataset
-//   g_distribution.sort( compareValues ); // blah
+   g_populationSize = parseInt( document.getElementById("totalAgents").value );
 
-
-   /*
-   // test array for the gini coefficient
-   for (var i = 0;  i < 14;  i++)
+   //if (g_populationSize != 100)
    {
-     g_distribution[i].value = 0;
+      g_distribution = cloneDistribution( g_baseDistribution );
+      g_distribution.splice( g_populationSize, g_baseDistribution.length - g_populationSize );
    }
-   g_distribution[14].value = 100;
-   populationSize = 15;
-   */
+   /*
+   else
+   {
+      g_distribution = Object.create( g_baseDistribution ).slice( 0, 100);
+      var j = 0;
+      for (var i = 0;  i < g_populationSize;  i++)
+      {
+        g_distribution[i].agent = g_baseDistribution[j].agent;
+        g_distribution[i].value = parseInt( (g_baseDistribution[j].value + g_baseDistribution[j+1].value) / 2 );
 
+        j += 2;
+      }
+   }
+   */
+   
    // distribution has been created;
    // now benchmark it and draw it
    benchmarkIt();
@@ -270,7 +314,7 @@ function resetSorted()
 //      v = (Math.random() < 0.5 ? 0 : 1);
 //   }
    
-   w = g_chartWidth / populationSize, // 620 pixels is the width of chart
+   w = g_chartWidth / g_populationSize, // 620 pixels is the width of chart
 
    //
    // Redo the bar mapping to bar location mapping
@@ -285,7 +329,7 @@ function resetSorted()
    d3.select("#chart1").remove();
    g_chart = d3.select("#chartParagraph").append("svg")
      .attr("class", "chart")
-     .attr("width",  w * populationSize + 30 - 1)
+     .attr("width",  w * g_populationSize + 30 - 1)
      .attr("height", h)
      .attr("id", "chart1");
 
@@ -321,7 +365,7 @@ function resetSorted()
    //
    g_chart.append("line")
        .attr("x1", 30)
-       .attr("x2", 30 + w * populationSize)
+       .attr("x2", 30 + w * g_populationSize)
        .attr("y1", h - .5)
        .attr("y2", h - .5)
        .attr("stroke", "#000");
@@ -339,7 +383,7 @@ function resetSorted()
 
      g_chart.append("line")
          .attr("x1", 30)
-         .attr("x2", 30 + w * populationSize)
+         .attr("x2", 30 + w * g_populationSize)
          .attr("y1", h - .5 - g_adequacyThreshold)
          .attr("y2", h - .5 - g_adequacyThreshold)
          .attr("stroke", adequacyLineColor)
@@ -550,15 +594,15 @@ function resetSorted()
       actualEfficiency = 0;
   
       // calculate the aggregate efficiency in in this distribution
-//      assert(populationSize == populationSize, "benchmarkIt() in distribuenda.js");
-      for (var i = 0;  i < populationSize;  i++)
+//      assert(g_populationSize == g_populationSize, "benchmarkIt() in distribuenda.js");
+      for (var i = 0;  i < g_populationSize;  i++)
       {
           actualEfficiency += g_distribution[i].value;
       }
 
       // Let's make some assumptions:
       //   the point on pareto frontier with the greatest aggregate efficiency is ...
-      idealEfficiency = populationSize * g_maxHeight; // everyone gets the most they can
+      idealEfficiency = g_populationSize * g_maxHeight; // everyone gets the most they can
  
       //
       // How far does actualEfficiency diverge from idealEfficiency?
@@ -590,7 +634,7 @@ function resetSorted()
       //  SOME agent(s) don't have enough and the case when 
       //  ALL agents don't have enough.
       //
-      for (var i = 0;  i < populationSize;  i++)
+      for (var i = 0;  i < g_populationSize;  i++)
       {
           if (g_distribution[i].value < g_adequacyThreshold)
           {
@@ -611,7 +655,7 @@ function resetSorted()
       //  SOME agent(s) don't have enough and the case when
       //  ALL agents don't have enough.
       //
-      for (var i = 0;  g_isNoOneInadequate && i < populationSize;  i++)
+      for (var i = 0;  g_isNoOneInadequate && i < g_populationSize;  i++)
       {
           if (g_distribution[i].value < g_adequacyThreshold)
           {
@@ -652,7 +696,7 @@ function resetSorted()
       // http://www.had2know.com/academics/gini-coefficient-calculator.html
       
       var G = 0;
-      var n = g_distribution.length;
+      var n = g_populationSize; //g_distribution.length;
       var sum1 = 0;
       var sum2 = 0;
 
