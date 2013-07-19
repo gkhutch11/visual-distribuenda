@@ -600,7 +600,7 @@ function createBaseDistribution()
         case (6):
           if (0 == whichBenchmarkToUse) // eudaimonia and no benchmark
           {
-          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing.                                                                      "
+          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing."
           }
            else if (1 == whichBenchmarkToUse) // eudaimonia and overall efficiency
           {
