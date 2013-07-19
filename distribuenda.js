@@ -486,7 +486,7 @@ function createBaseDistribution()
         case (0):    
           if (0 == whichBenchmarkToUse) // money and no benchmark
           {
-            benchmarkDescription = "Studying distributions of wealth was the predominant measure of the health of a society throughout the 20th century. Economists generally focus of these distributions to measure a country's Gross Domestic Product (GDP)."
+            benchmarkDescription = "Studying distributions of wealth was the predominant measure of the health of a society throughout the 20th century. Rightly or wrongly, we tend to think of countries with a high Gross Domestic Product as wealthy. How the GDP is distributed though, is another question."
           }
            else if (1 == whichBenchmarkToUse) // money and overall efficiency
           { 
@@ -524,7 +524,7 @@ function createBaseDistribution()
         case (2):
           if (0 == whichBenchmarkToUse) // social capital and no benchmark
           {
-            benchmarkDescription = "Social capital is a way to quantify the value of your phone's contacts list. Social media sites like LinkedIn are centered around rising this number.                                                                     "
+            benchmarkDescription = "Social capital is a way to quantify the value of your phone's contacts list. Social media sites like LinkedIn are centered around rising this number."
           }
            else if (1 == whichBenchmarkToUse) // social capital and overall efficiency
           {
@@ -562,7 +562,7 @@ function createBaseDistribution()
         case (4):
           if (0 == whichBenchmarkToUse) // happiness and no benchmark
           {
-            benchmarkDescription = "Happiness distributions help us evaluate the emotional health of a society. However, this data can be misleading because it is often based on self-reported levels of happiness.                                          "
+            benchmarkDescription = "Happiness distributions help us evaluate the emotional health of a society. However, this data can be misleading because it is often based on self-reported levels of happiness."
           }
            else if (1 == whichBenchmarkToUse) // happiness and overall efficiency
           {
@@ -581,7 +581,7 @@ function createBaseDistribution()
         case (5):
           if (0 == whichBenchmarkToUse) // wellbeing and no benchmark
           {
-            benchmarkDescription = "Measures of wellbeing include factors such as health and happiness. They are used to supplement traditional measures that only incorporate economic factors.                                                          "
+            benchmarkDescription = "Measures of wellbeing include factors such as health and happiness. They are used to supplement traditional measures that only incorporate economic factors."
           }
            else if (1 == whichBenchmarkToUse) // wellbeing and overall efficiency
           {
@@ -600,7 +600,7 @@ function createBaseDistribution()
         case (6):
           if (0 == whichBenchmarkToUse) // eudaimonia and no benchmark
           {
-          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing.                                                                      "
+          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing."
           }
            else if (1 == whichBenchmarkToUse) // eudaimonia and overall efficiency
           {
