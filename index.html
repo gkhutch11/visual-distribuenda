@@ -18,94 +18,97 @@
 </head>
 
 <body>
-<div align="center"> 
 
+<br>
+<br>
+<br>
 
-  <!-- light yellow line at the top -->
-  <table style="height:6px; width:100%; background-color: #ffffe0;">
-      <tr align=center>
+<!-- Heading and description --> 
+<table width="800px">
+<tr>
+  <td>
+    <table>
+    <tr>
       <td>
+        <h1 id="heading">Visual Distribuenda</h1>
+      </td>
+    <tr height="150px">
+      <td width="500px">
+        <p><font id="benchmarkDescription">Benchmark the distribution of some morally relevant good using a number of different conceptions of justice.</font></p>
+        <br>
+        <br>
+        <br>
       </td>
     </tr>
-  </table>
-
-
-  <!-- the rest of the page -->
-  <br> <!-- skip down a bit -->
-  <br>
-  <br>
-  <table border=0 cellspacing=1 cellpadding=2 width=750>
-    <tr> 
-      <td width="742"> 
-
-  <h1 id="heading">Visual Distribuenda</h1>
-  <br>
-</div>
+    </table>
+  </td>
+  <td align="right" valign="top">
+    <img src="../img/version.png">
+  </td>
+</tr>
+</table>
 
 <div id="everything" style="visibility:">
 
-  <p><font id="benchmarkDescription" color="grey">Benchmark the distribution of some morally relevant good using a number of different conceptions of justice.</font></p>
-  <br>
-  <br>
-  <br>
-
-<p>
-<table>
+  <!-- chart and legend -->
+  <table width="1040px">
   <tr>
-    <td colspan=3>
-      <div id="chartParagraph">
-        <svg class="chart" id="chart1"></svg>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td width=28>
-    </td>
     <td>
-      <div align="left"><a id="sorted" class="clipboard" onclick="toggleSorted()">Sort it!</a>&nbsp;&nbsp;<br></div>
+      <!-- chart -->
+      <table width="799px">
+      <tr>
+        <td colspan=2>
+          <div id="chartParagraph">
+            <svg class="chart" id="chart1"></svg>
+          </div>
+        </td>
+      </tr>
+
+      <!-- "Sort it!" and "Save as CSV" links underneath the chart-->
+      <tr>
+        <td>
+          <div align="left"><a id="sorted" class="clipboard" onclick="toggleSorted()">Sort it!</a><br></div>
+        </td>
+        <td>
+          <div align="right"><a id="exportCSVlink" class="clipboard" onclick="exportToCSV()">Save as CSV</a><br></div>
+        </td>
+      </tr>
+      </table>
     </td>
+    <!-- legend -->
     <td>
-      <div align="right"><a id="exportCSVlink" class="clipboard" onclick="exportToCSV()">Save as CSV</a>&nbsp;&nbsp;<br></div>
+      <img src="img/legendBlank.png" id="legend" tyle="padding-left:10px; padding-right:10px; width:233; height=110;">
     </td>
-  </tr>
-</table>
-</p>
+  </table>
 
 
-<div id="option">
-<p>
-  <table width="100%">
-  <tr>
-  <td>
-    <table>
-<!--    <tr><td colspan="3">
-        <!--       <input type="checkbox" value="" id="checkbox1" onchange="showSortedDistribution();">Sort it!</input> -->
-    
-    <tr>
-    <td>
+
+
+  <!-- The widgets for user input -->
+  <table>
+  <tr align="left">
+    <td width="120px">
       Population size:&nbsp;&nbsp;
     </td>
-    <td>
-        <input
-           name="totalAgents"
-           id="totalAgents"
-           type="range"
-           min=2
-           max=200
-           value="200"
-           onchange="createDistribution()" />
+    <td width="210px">
+      <input name="totalAgents"
+             id="totalAgents"
+             type="range"
+             min=2
+             max=200
+             value="200"
+             onchange="createDistribution()" />
     </td>
     <td>
       &nbsp;
       <input class="btn"
-           name="updateButton" 
-           type="button" 
-           value="new distribution"
-           onclick="createBaseDistribution(); createDistribution()" /><br>
+             name="updateButton" 
+             type="button" 
+             value="new distribution"
+             onclick="createBaseDistribution(); createDistribution()" /><br>
     </td>
-    </tr>
-    
-    <tr>
+  </tr>
+  <tr align="left">
     <td>
       Distribuendum:
     </td>
@@ -119,55 +122,44 @@
           <option>Wellbeing</option>
           <option>Eudaimonia</option>
       </select>
-
       <br>
     </td>
-    <td>&nbsp</td>
-    </tr>
-
-    <tr>
+    <td></td>
+  </tr>
+  <tr>
     <td>
       Benchmark:
     </td>
     <td>
-          <select style="width:160" id="benchmark" onchange="benchmarkChanged()">
-            <option value="0">None</option>
-            <option value="1">Efficiency</option>
-            <option value="2">Adequacy</option>
-            <option value="3">Equality</option>
-          </select>
-
+      <select style="width:160" id="benchmark" onchange="benchmarkChanged()">
+        <option value="0">None</option>
+        <option value="1">Efficiency</option>
+        <option value="2">Adequacy</option>
+        <option value="3">Equality</option>
+      </select>
     </td>
-    <td>&nbsp;</td>
-    </tr>
-
-    <tr>
+    <td></td>
+  </tr>
+  <tr>
     <td>&nbsp;</td>
     <td><div style="visibility:hidden" id="benchmarkOptionsContainer">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" placeholder="0 < threshold < 100" id="benchmarkValue" style="width:140px; height:30px" onchange="adequacyThresholdChanged()"/>
         </div></td>
     </td>&nbsp;</td>
-    </tr>
-
-    </table>
-  </td>
-  <!-- clipboard <td valign="top" align="right"><textarea id="clipboardTextArea" style="width: 80px; height: 100px; display:none;"></textarea></td> -->
   </tr>
   </table>
-
-</p>
 </div>
 
-<!-- why do i jump around when the adequacy threshold changes from validated to invalidated or vice versa? -->
-<p align="right" style="font-size:10pt">Braynen Lab, 2013.<br>
-Google Chrome for now.</p><br>
-<p>
-
-</div>
-
-
-
-
+<!-- My tag -->
+<table width="800px">
+<tr>
+  <td align="right">
+    <p align="right" style="font-size:10pt; color:grey">Braynen Lab, 2013<br>
+    Google Chrome for now</p><br>
+    <p>
+  </td>
+</tr>
+</table>
 
 </body>
 
