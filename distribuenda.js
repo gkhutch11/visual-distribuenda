@@ -58,13 +58,13 @@
         // Give the user the bad news
         // 
         document.getElementById("everything").setAttribute("style", "visibility: hidden");
-        if (ieVer > -1 && ieVer <= 10.0)
-        { 
+        //if (ieVer > -1 && ieVer <= 10.0)
+        //{ 
             document.getElementById("heading").innerHTML = "Sorry, I don't think our stuff works in your browser.  Would you mind using Chrome instead?";
             document.getElementById("benchmarkDescription").innerHTML = "You can download Google Chrome here: <a hred='http://www.google.com/chrome/‎'>www.google.com/chrome/</a>";
-        } else {
-            document.getElementById("heading").innerHTML = "Sorry, I don't think our stuff works in your browser.  Would you mind trying another browser?";
-        }
+        //} else {
+        //    document.getElementById("heading").innerHTML = "Sorry, I don't think our stuff works in your browser.  Would you mind trying another browser?";
+        //}
         return false;
     }   else {
         return true;
@@ -408,33 +408,38 @@ function createBaseDistribution()
 
  function benchmarkChanged()
  {
-    updateLegend();
     benchmarkIt();
+    updateLegend();
     drawChart();
  }
 
  function updateLegend()
  {
-    /* TO DO
-    var imageSrc = "";
+    var legendImageSrc  = "";
+    var versionImageSrc = "";
+
     if (g_isAdequacy)
     {
-      imageSrc = "img/legendAdequacy.png";
+      versionImageSrc = "img/versionGray.png"
+      legendImageSrc = "img/legendAdequacy.png";
     }
     else if (g_isEquality)
     {
-      imageSrc = "img/legendEquality.png";
+      versionImageSrc = "img/versionGray.png"
+      legendImageSrc = "img/legendEquality.png";
     }
     else if (g_isUtility)
     {
-      imageSrc = "img/legendUtility.png"
+      versionImageSrc = "img/versionGray.png"
+      legendImageSrc = "img/legendUtility.png"
     }
     else
     {
-      return;
+      //versionImageSrc = "img/version.png"
+      legendImageSrc = "img/legendBlank.png";
     }
-    document.getElementById("legend").src = imageSrc;
-    */
+    document.getElementById("legendImage").src  = legendImageSrc;
+    document.getElementById("versionImage").src = versionImageSrc;
  }
 
  function distribuendumChanged()
@@ -800,6 +805,12 @@ function createBaseDistribution()
       }
 
      // benchmarkDescription = "It is bad if some people have a lot less than others. Using the Gini coefficient to see how unequal the distribution is.";
+    }
+    else
+    {
+      g_isUtility  = false;
+      g_isEquality = false;
+      g_isUtility  = false;
     }
  }
 

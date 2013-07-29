@@ -43,7 +43,7 @@
     </table>
   </td>
   <td align="right" valign="top">
-    <img src="../img/version.png">
+    <img id="versionImage" src="img/version.png">
   </td>
 </tr>
 </table>
@@ -76,8 +76,8 @@
       </table>
     </td>
     <!-- legend -->
-    <td>
-      <img src="img/legendBlank.png" id="legend" tyle="padding-left:10px; padding-right:10px; width:233; height=110;">
+    <td>                                              <!-- right now the padding is in the image itself; see the .png's -->
+      <img src="img/legendBlank.png" id="legendImage" tyle="padding-left:0px; padding-right:10px;">
     </td>
   </table>
 
@@ -133,9 +133,9 @@
     <td>
       <select style="width:160" id="benchmark" onchange="benchmarkChanged()">
         <option value="0">None</option>
-        <option value="1">Efficiency</option>
-        <option value="2">Adequacy</option>
-        <option value="3">Equality</option>
+        <option value="1">Efficiency: utilitarian, aggregate</option>
+        <option value="2">Adequacy: sufficientarian</option>
+        <option value="3">Equality: egalitarian, Gini</option>
       </select>
     </td>
     <td></td>
