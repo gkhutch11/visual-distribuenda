@@ -6,8 +6,9 @@
  var g_showSortedDistribution = false;
 
  // which benchmark to use?
- var g_equality = false;
+ var g_isEquality = false;
  var g_isAdequacy = false; // display the adequacy threshold iff this flag is true
+ var g_isUtility  = false;
 
  var g_adequacyThreshold = 0;
  var g_isNoOneInadequate = true;
@@ -50,19 +51,20 @@
     var ieVer = getInternetExplorerVersion();     
     var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
     var isChrome = window.chrome;
-    if (!isChrome && !isSafari && !(ieVer >= 10.0))
+    if (!isChrome && !isSafari && !(ieVer > 10.0))
     {
         //
         // Unsupported browser :(
         // Give the user the bad news
         // 
         document.getElementById("everything").setAttribute("style", "visibility: hidden");
-        if (ieVer > -1 && ieVer < 10.0)
-        { 
-            document.getElementById("heading").innerHTML = "Sorry, I don't think our stuff works in your browser.  Would you mind upgrading or downloading Chrome?";
-        } else {
-            document.getElementById("heading").innerHTML = "Sorry, I don't think our stuff works in your browser.  Would you mind trying another brower?";
-        }
+        //if (ieVer > -1 && ieVer <= 10.0)
+        //{ 
+            document.getElementById("heading").innerHTML = "Sorry, I don't think our stuff works in your browser.  Would you mind using Chrome instead?";
+            document.getElementById("benchmarkDescription").innerHTML = "You can download Google Chrome here: <a hred='http://www.google.com/chrome/‎'>www.google.com/chrome/</a>";
+        //} else {
+        //    document.getElementById("heading").innerHTML = "Sorry, I don't think our stuff works in your browser.  Would you mind trying another browser?";
+        //}
         return false;
     }   else {
         return true;
@@ -228,7 +230,7 @@ function compareAgents(a, b) {
 function resetSorted()
 {
   // if not equality (benchmark), then reset to unsorted view
-  if (! g_equality)
+  if (! g_isEquality)
   {
      g_isSorted = false;
      document.getElementById("sorted").innerHTML = "Sort it!";
@@ -305,6 +307,7 @@ function createBaseDistribution()
  //
  function drawChart()
  {
+   var leftMargin=0;
 //   if (g_variability < 50) blah
 //   {
       v = Math.random() * g_maxHeight;
@@ -321,7 +324,7 @@ function createBaseDistribution()
    //
    xScale = d3.scale.linear() // xScale is not a variable; it's a function!  (it's a "d3js scale")
      .domain([0, 1])
-     .range([30, w + 30]);
+     .range([leftMargin, w + leftMargin]);
 
    //
    // Nuke the old chart and a brand new one in its stead
@@ -329,7 +332,7 @@ function createBaseDistribution()
    d3.select("#chart1").remove();
    g_chart = d3.select("#chartParagraph").append("svg")
      .attr("class", "chart")
-     .attr("width",  w * g_populationSize + 30 - 1)
+     .attr("width",  w * g_populationSize + leftMargin - 1)
      .attr("height", h)
      .attr("id", "chart1");
 
@@ -364,8 +367,8 @@ function createBaseDistribution()
    // Draw the x-axis
    //
    g_chart.append("line")
-       .attr("x1", 30)
-       .attr("x2", 30 + w * g_populationSize)
+       .attr("x1", leftMargin)
+       .attr("x2", leftMargin + w * g_populationSize)
        .attr("y1", h - .5)
        .attr("y2", h - .5)
        .attr("stroke", "#000");
@@ -382,8 +385,8 @@ function createBaseDistribution()
      var adequacyLineColor = g_isNoOneInadequate ? "white" : "steelblue";
 
      g_chart.append("line")
-         .attr("x1", 30)
-         .attr("x2", 30 + w * g_populationSize)
+         .attr("x1", leftMargin)
+         .attr("x2", leftMargin + w * g_populationSize)
          .attr("y1", h - .5 - g_adequacyThreshold)
          .attr("y2", h - .5 - g_adequacyThreshold)
          .attr("stroke", adequacyLineColor)
@@ -394,8 +397,8 @@ function createBaseDistribution()
    // Draw the y-axis
    //
    //g_chart.append("line")
-   //    .attr("x1", 30)
-   //    .attr("x2", 30)
+   //    .attr("x1", leftMargin)
+   //    .attr("x2", leftMargin)
    //    .attr("y1", 4)
    //    .attr("y2", h - .5)
    //    .style("stroke", "#000");
@@ -406,7 +409,37 @@ function createBaseDistribution()
  function benchmarkChanged()
  {
     benchmarkIt();
+    updateLegend();
     drawChart();
+ }
+
+ function updateLegend()
+ {
+    var legendImageSrc  = "";
+    var versionImageSrc = "";
+
+    if (g_isAdequacy)
+    {
+      versionImageSrc = "img/versionGray.png"
+      legendImageSrc = "img/legendAdequacy.png";
+    }
+    else if (g_isEquality)
+    {
+      versionImageSrc = "img/versionGray.png"
+      legendImageSrc = "img/legendEquality.png";
+    }
+    else if (g_isUtility)
+    {
+      versionImageSrc = "img/versionGray.png"
+      legendImageSrc = "img/legendUtility.png"
+    }
+    else
+    {
+      //versionImageSrc = "img/version.png"
+      legendImageSrc = "img/legendBlank.png";
+    }
+    document.getElementById("legendImage").src  = legendImageSrc;
+    document.getElementById("versionImage").src = versionImageSrc;
  }
 
  function distribuendumChanged()
@@ -462,7 +495,7 @@ function createBaseDistribution()
  {
     g_chartColor = DEFAULT_CHART_COLOR;
     g_isAdequacy = false;
-    g_equality = false;
+    g_isEquality = false;
 
     whichBenchmarkToUse = document.getElementById("benchmark").selectedIndex;
     // 0 means 'none' (do not benchmark it)
@@ -625,6 +658,8 @@ function createBaseDistribution()
      
     if (1 == whichBenchmarkToUse)
     {
+      g_isUtility = true;
+
       //
       // efficiency -- for now assume "overall efficiency" (as in, aggregate efficiency)
       //
@@ -703,15 +738,15 @@ function createBaseDistribution()
 
       if (g_isNoOneInadequate)
       {
-          g_chartColor = "green";
+          g_chartColor = "green"; // (R,G,B) = (0, 128, 0)
       }
       else if (g_isEveryoneInadequate)
       {
-          g_chartColor = "red";
+          g_chartColor = "red"; // (R,G,B) = (255, 0,)
       }
       else // some are inadequate but not all
       {
-          g_chartColor = "#C40000"
+          g_chartColor = "#C40000"; // (R,G,B) = (196, 0, 0)
       }
 
       // Let the user override the default adequacy threshold
@@ -725,7 +760,7 @@ function createBaseDistribution()
       //
       // equality
       //
-      g_equality = true;
+      g_isEquality = true;
 
       // Gini coefficient for now
       //
@@ -770,6 +805,12 @@ function createBaseDistribution()
       }
 
      // benchmarkDescription = "It is bad if some people have a lot less than others. Using the Gini coefficient to see how unequal the distribution is.";
+    }
+    else
+    {
+      g_isUtility  = false;
+      g_isEquality = false;
+      g_isUtility  = false;
     }
  }
 
