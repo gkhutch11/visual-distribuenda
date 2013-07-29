@@ -483,6 +483,7 @@ function createBaseDistribution()
  }
 
 
+
  //
  // Benchmarks the distribution using a given conception of justice.
  //
@@ -497,160 +498,7 @@ function createBaseDistribution()
     g_isAdequacy = false;
     g_isEquality = false;
 
-    whichBenchmarkToUse = document.getElementById("benchmark").selectedIndex;
-    // 0 means 'none' (do not benchmark it)
-    // 1 means overall efficiency
-    // 2 means adequacy
-    // 3 means equality
-
-    whichDistribuendumIsSelected = document.getElementById("distribuendum").selectedIndex;
-    // 0 means money
-    // 1 means health
-    // 2 means social capital
-    // 3 means friends and family
-    // 4 means happiness
-    // 5 means wellbeing
-    // 6 means eudaimonia
-
-    var benchmarkDescription = "Benchmark the distribution of some morally relevant good using a number of different conceptions of justice."; // default message
-
-    switch (whichDistribuendumIsSelected)
-      {
-        case (0):    
-          if (0 == whichBenchmarkToUse) // money and no benchmark
-          {
-            benchmarkDescription = "Studying distributions of wealth was the predominant measure of the health of a society throughout the 20th century. Rightly or wrongly, we tend to think of countries with a high Gross Domestic Product as wealthy. How the GDP is distributed though, is another question."
-          }
-           else if (1 == whichBenchmarkToUse) // money and overall efficiency
-          { 
-            benchmarkDescription = "The greater the overall effieciency, the better. This utilitarian benchmark focuses on the total wealth of all individuals rather than on the 'shape' of the distribution."
-          }
-           else if (2 == whichBenchmarkToUse) // money and adequacy
-          {
-            benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of money, the poverty line is an example of an adequacy threshold."
-          }
-           else if (3 == whichBenchmarkToUse) // money and equality
-          {
-            benchmarkDescription = "More money is great, but not if it creates large divides in the population. This benchmark uses the Gini coefficient to measure the amount of inequality in the distribution."
-          }
-        break;
-
-        case (1):
-          if (0 == whichBenchmarkToUse) // health and no benchmark
-          {
-            benchmarkDescription = "Factors that determine the physical health of a society include things like life expectancy, obesity percentage, and infant mortality rate."          
-          }
-           else if (1 == whichBenchmarkToUse) // health and overall efficiency
-          {
-            benchmarkDescription = "The greater the overall effieciency, the better. This utilitarian benchmark focuses on the total health of all individuals rather than on the 'shape' of the distribution."
-          }
-           else if (2 == whichBenchmarkToUse) // health and adequacy
-          {
-            benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of health, inadequacies can have especially severe consequences."
-          }
-           else if (3 == whichBenchmarkToUse) // health and equality
-          {
-            benchmarkDescription = "Inequalities in health distributions can be the result of personal choice, or it can indicate flaws in the heatlh care system as a whole. &nbsp;&nbsp;&nbsp;&nbsp;"
-          }                                                                                 
-        break;
-
-        case (2):
-          if (0 == whichBenchmarkToUse) // social capital and no benchmark
-          {
-            benchmarkDescription = "Social capital is a way to quantify the value of your phone's contacts list. Social media sites like LinkedIn are centered around rising this number."
-          }
-           else if (1 == whichBenchmarkToUse) // social capital and overall efficiency
-          {
-            benchmarkDescription = "Research has shown that people accomplish more collectively than they would on their own. It should follow that social distributions with strong social network ties should be capable of more than one consisting of loners."
-          }
-           else if (2 == whichBenchmarkToUse) // social capital and adequacy
-          {
-            benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of social capital, reaching the adequacy threshold means you have someone who will bail you out of jail."
-          }
-           else if (3 == whichBenchmarkToUse) // social capital and equality
-          {
-            benchmarkDescription = "Some people are social butterflies and can call on any number of people if they find themselves in a jam. However, people with little social capital are often forced to pave thier own path without any help."
-          }                                                                                 
-        break;
-
-        case (3):
-          if (0 == whichBenchmarkToUse) // friends and family and no benchmark
-          {
-            benchmarkDescription = "Material wealth alone is not enough to satisfy our deepest needs as human beings. Having a strong base of friends and family is important for when the going gets rough."
-          }
-           else if (1 == whichBenchmarkToUse) // friends and family and overall efficiency
-          {
-            benchmarkDescription = "Material wealth alone is not enough to satisfy our deepest needs as human beings. Having a strong base of friends and family is important for when the going gets rough."
-          }
-           else if (2 == whichBenchmarkToUse) // friends and family and adequacy
-          {
-            benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. When it comes to friends and family, sometimes a tight knit group is stronger than a large group with loose ties."
-          }
-           else if (3 == whichBenchmarkToUse) // friends and family and equality
-          {
-            benchmarkDescription = "An unequal distribution of friends and family can could mean that some people are just more social than others. As a reference point, the average Facebook user has 141.5 friends, as of June 2013."
-          }                                                                                 
-        break;
-
-        case (4):
-          if (0 == whichBenchmarkToUse) // happiness and no benchmark
-          {
-            benchmarkDescription = "Happiness distributions help us evaluate the emotional health of a society. However, this data can be misleading because it is often based on self-reported levels of happiness."
-          }
-           else if (1 == whichBenchmarkToUse) // happiness and overall efficiency
-          {
-          benchmarkDescription = "Any leader who promised to maximize total happiness would certainly have my support. It just so happens that the king of Bhutan famously decided to prioritize “Gross National Happiness” over the more typical “Gross National Product.”"
-          }
-           else if (2 == whichBenchmarkToUse) // happiness and adequacy
-          {
-          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. For our purposes, someone who is clinically depressed has an inadequate amount of happiness."
-          }
-           else if (3 == whichBenchmarkToUse) // happiness and equality
-          {
-          benchmarkDescription = "Happiness distributions are generally based on self-reported levels of happiness. Therefore, inequality can either indicate actual differences in satisfaction, or merely a difference in the definintion of happiness. "
-          }                                                                                 
-        break;
-
-        case (5):
-          if (0 == whichBenchmarkToUse) // wellbeing and no benchmark
-          {
-            benchmarkDescription = "Measures of wellbeing include factors such as health and happiness. They are used to supplement traditional measures that only incorporate economic factors."
-          }
-           else if (1 == whichBenchmarkToUse) // wellbeing and overall efficiency
-          {
-            benchmarkDescription = "The greater the overall effieciency, the better. This utilitarian benchmark focuses on the total wellbeing of all individuals rather than on the 'shape' of the distribution."
-          }
-           else if (2 == whichBenchmarkToUse) // wellbeing and adequacy
-          {
-          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of wellbeing, reaching this threshold means having an adequate amount of health, wealth, and overall satisfaction with life."
-          }
-           else if (3 == whichBenchmarkToUse) // wellbeing and equality
-          {
-          benchmarkDescription = "This benchmark focuses on how evenly wellbeing is distributed across society. We use the Gini coefficient to quanitify how well-off individual agents are."
-          }                                                                                 
-        break;
-
-        case (6):
-          if (0 == whichBenchmarkToUse) // eudaimonia and no benchmark
-          {
-          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing."
-          }
-           else if (1 == whichBenchmarkToUse) // eudaimonia and overall efficiency
-          {
-          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing, and this benchmark focuses on the total amount of eudaimonia across the distribution."
-          }
-           else if (2 == whichBenchmarkToUse) // eudaimonia and adequacy
-          {
-          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. If someone feels as through they are notflourishing in their current role then they may have inadequate eudaimonia."
-          }
-           else if (3 == whichBenchmarkToUse) // eudaimonia and equality
-          {
-          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing, and this benchmark focuses on how evenly distributed eudaimonia is throughout a society."
-          }                                                                                 
-        break;
-      }
-
-    document.getElementById("benchmarkDescription").innerHTML = benchmarkDescription; // Tell the user a little something about the benchmark she picked
+    document.getElementById("benchmarkDescription").innerHTML = getBenchmarkDescription(); // Tell the user a little something about the benchmark she picked
 
     document.getElementById("benchmarkOptionsContainer").setAttribute("style", "visibility:hidden"); // hide it by default; (re)show it below if appropriate
 
@@ -813,4 +661,162 @@ function createBaseDistribution()
       g_isUtility  = false;
     }
  }
+
+  function getBenchmarkDescription()
+ {
+   whichBenchmarkToUse = document.getElementById("benchmark").selectedIndex;
+    // 0 means 'none' (do not benchmark it)
+    // 1 means overall efficiency
+    // 2 means adequacy
+    // 3 means equality
+
+    whichDistribuendumIsSelected = document.getElementById("distribuendum").selectedIndex;
+    // 0 means money
+    // 1 means health
+    // 2 means social capital
+    // 3 means friends and family
+    // 4 means happiness
+    // 5 means wellbeing
+    // 6 means eudaimonia
+
+    var benchmarkDescription = "Benchmark the distribution of some morally relevant good using a number of different conceptions of justice."; // default message
+  
+  switch (whichDistribuendumIsSelected)
+      {
+        case (0):    
+          if (0 == whichBenchmarkToUse) // money and no benchmark
+          {
+            benchmarkDescription = "Studying distributions of wealth was the predominant measure of the health of a society throughout the 20th century. Rightly or wrongly, we tend to think of countries with a high Gross Domestic Product as wealthy. How the GDP is distributed though, is another question."
+          }
+           else if (1 == whichBenchmarkToUse) // money and overall efficiency
+          { 
+            benchmarkDescription = "The greater the overall effieciency, the better. This utilitarian benchmark focuses on the total wealth of all individuals rather than on the 'shape' of the distribution."
+          }
+           else if (2 == whichBenchmarkToUse) // money and adequacy
+          {
+            benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of money, the poverty line is an example of an adequacy threshold."
+          }
+           else if (3 == whichBenchmarkToUse) // money and equality
+          {
+            benchmarkDescription = "More money is great, but not if it creates large divides in the population. This benchmark uses the Gini coefficient to measure the amount of inequality in the distribution."
+          }
+        break;
+
+        case (1):
+          if (0 == whichBenchmarkToUse) // health and no benchmark
+          {
+            benchmarkDescription = "Factors that determine the physical health of a society include things like life expectancy, obesity percentage, and infant mortality rate."          
+          }
+           else if (1 == whichBenchmarkToUse) // health and overall efficiency
+          {
+            benchmarkDescription = "The greater the overall effieciency, the better. This utilitarian benchmark focuses on the total health of all individuals rather than on the 'shape' of the distribution."
+          }
+           else if (2 == whichBenchmarkToUse) // health and adequacy
+          {
+            benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of health, inadequacies can have especially severe consequences."
+          }
+           else if (3 == whichBenchmarkToUse) // health and equality
+          {
+            benchmarkDescription = "Inequalities in health distributions can be the result of personal choice, or it can indicate flaws in the heatlh care system as a whole. &nbsp;&nbsp;&nbsp;&nbsp;"
+          }                                                                                 
+        break;
+
+        case (2):
+          if (0 == whichBenchmarkToUse) // social capital and no benchmark
+          {
+            benchmarkDescription = "Social capital is a way to quantify the value of your phone's contacts list. Social media sites like LinkedIn are centered around rising this number."
+          }
+           else if (1 == whichBenchmarkToUse) // social capital and overall efficiency
+          {
+            benchmarkDescription = "Research has shown that people accomplish more collectively than they would on their own. It should follow that social distributions with strong social network ties should be capable of more than one consisting of loners."
+          }
+           else if (2 == whichBenchmarkToUse) // social capital and adequacy
+          {
+            benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of social capital, reaching the adequacy threshold means you have someone who will bail you out of jail."
+          }
+           else if (3 == whichBenchmarkToUse) // social capital and equality
+          {
+            benchmarkDescription = "Some people are social butterflies and can call on any number of people if they find themselves in a jam. However, people with little social capital are often forced to pave thier own path without any help."
+          }                                                                                 
+        break;
+
+        case (3):
+          if (0 == whichBenchmarkToUse) // friends and family and no benchmark
+          {
+            benchmarkDescription = "Material wealth alone is not enough to satisfy our deepest needs as human beings. Having a strong base of friends and family is important for when the going gets rough."
+          }
+           else if (1 == whichBenchmarkToUse) // friends and family and overall efficiency
+          {
+            benchmarkDescription = "Material wealth alone is not enough to satisfy our deepest needs as human beings. Having a strong base of friends and family is important for when the going gets rough."
+          }
+           else if (2 == whichBenchmarkToUse) // friends and family and adequacy
+          {
+            benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. When it comes to friends and family, sometimes a tight knit group is stronger than a large group with loose ties."
+          }
+           else if (3 == whichBenchmarkToUse) // friends and family and equality
+          {
+            benchmarkDescription = "An unequal distribution of friends and family can could mean that some people are just more social than others. As a reference point, the average Facebook user has 141.5 friends, as of June 2013."
+          }                                                                                 
+        break;
+
+        case (4):
+          if (0 == whichBenchmarkToUse) // happiness and no benchmark
+          {
+            benchmarkDescription = "Happiness distributions help us evaluate the emotional health of a society. However, this data can be misleading because it is often based on self-reported levels of happiness."
+          }
+           else if (1 == whichBenchmarkToUse) // happiness and overall efficiency
+          {
+          benchmarkDescription = "Any leader who promised to maximize total happiness would certainly have my support. It just so happens that the king of Bhutan famously decided to prioritize “Gross National Happiness” over the more typical “Gross National Product.”"
+          }
+           else if (2 == whichBenchmarkToUse) // happiness and adequacy
+          {
+          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. For our purposes, someone who is clinically depressed has an inadequate amount of happiness."
+          }
+           else if (3 == whichBenchmarkToUse) // happiness and equality
+          {
+          benchmarkDescription = "Happiness distributions are generally based on self-reported levels of happiness. Therefore, inequality can either indicate actual differences in satisfaction, or merely a difference in the definintion of happiness. "
+          }                                                                                 
+        break;
+
+        case (5):
+          if (0 == whichBenchmarkToUse) // wellbeing and no benchmark
+          {
+            benchmarkDescription = "Measures of wellbeing include factors such as health and happiness. They are used to supplement traditional measures that only incorporate economic factors."
+          }
+           else if (1 == whichBenchmarkToUse) // wellbeing and overall efficiency
+          {
+            benchmarkDescription = "The greater the overall effieciency, the better. This utilitarian benchmark focuses on the total wellbeing of all individuals rather than on the 'shape' of the distribution."
+          }
+           else if (2 == whichBenchmarkToUse) // wellbeing and adequacy
+          {
+          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. In the case of wellbeing, reaching this threshold means having an adequate amount of health, wealth, and overall satisfaction with life."
+          }
+           else if (3 == whichBenchmarkToUse) // wellbeing and equality
+          {
+          benchmarkDescription = "This benchmark focuses on how evenly wellbeing is distributed across society. We use the Gini coefficient to quanitify how well-off individual agents are."
+          }                                                                                 
+        break;
+
+        case (6):
+          if (0 == whichBenchmarkToUse) // eudaimonia and no benchmark
+          {
+          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing."
+          }
+           else if (1 == whichBenchmarkToUse) // eudaimonia and overall efficiency
+          {
+          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing, and this benchmark focuses on the total amount of eudaimonia across the distribution."
+          }
+           else if (2 == whichBenchmarkToUse) // eudaimonia and adequacy
+          {
+          benchmarkDescription = "This benchmark focuses on whether everyone in the distribution reaches the adequacy threshold. If someone feels as through they are notflourishing in their current role then they may have inadequate eudaimonia."
+          }
+           else if (3 == whichBenchmarkToUse) // eudaimonia and equality
+          {
+          benchmarkDescription = "'Eudaimonia' is a term coined by Aristotle that can be taken to mean 'living well.' It is seen by many as the ultimate measure of human flourishing, and this benchmark focuses on how evenly distributed eudaimonia is throughout a society."
+          }                                                                                 
+        break;
+      }
+    return benchmarkDescription;
+ }
+
 
